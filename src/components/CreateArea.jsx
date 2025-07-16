@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import AddIcon from '@mui/icons-material/Add';
+import Fab from "@mui/material/Fab";
+import { Zoom } from "@mui/material";
 
 function CreateArea(props) {
+
+  const [isNavigated, setIsNavigated] = useState(false);
 
 const [createNote, setCreateNote] = useState({
   title: "",
@@ -26,12 +31,21 @@ function handleClick(event) {
   event.preventDefault();
 }
 
+function expand() {
+  setIsNavigated(true);
+}
+
   return (
     <div>
-      <form onSubmit={handleClick}>
-        <input name="title" onChange={handleChange} placeholder="Title"  value={createNote.title}/>
-        <textarea name="content" onChange={handleChange} placeholder="Take a note..." rows="3" value={createNote.content}/>
-        <button>Add</button>
+      <form className="create-note">
+       {isNavigated ? ( <input name="title" onChange={handleChange} placeholder="Title"  value={createNote.title}/> ): null} 
+        <textarea onClick={expand} name="content" onChange={handleChange} placeholder="Take a note..." rows={isNavigated ? 3 : 1} value={createNote.content}/>
+        <Zoom in={isNavigated}>
+          <Fab onClick={handleClick}>
+          <AddIcon />
+        </Fab>
+        </Zoom>
+        
       </form>
     </div>
   );
