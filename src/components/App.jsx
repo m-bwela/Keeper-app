@@ -37,6 +37,18 @@ function App() {
     });
   }
 
+  function editNote(id, updateNote) {
+    setNotes((prevNotes) => {
+      prevNotes.map((note) => {
+        if(note.id === id) {
+          return { ...note, ...updateNote };
+        } else {
+          return note;
+        }
+      })
+    })
+  }
+
   return (
     <div>
       <Header />
@@ -54,6 +66,7 @@ function App() {
         title={noteItem.title}
         content={noteItem.content}
         onDelete={deleteNote}
+        onEdit={editNote}
         />
        )
       })}
