@@ -8,6 +8,8 @@ html {
 }
 body {
   background: #eee;
+  background-color: #8a008a;
+  background-image: url("https://www.transparenttextures.com/patterns/polonez-pattern.png");
   padding: 0 16px;
 }
 
