@@ -11,6 +11,7 @@ const port = 3000;
 const db = new pg.Client({
     user: 'postgres',
     host: 'localhost',
+    password: 'tyedatabase',
     database: 'keeper',
     port: 5432,
 });
