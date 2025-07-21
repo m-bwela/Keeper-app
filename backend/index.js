@@ -12,8 +12,8 @@ const db = new pg.Client({
     user: 'postgres',
     host: 'localhost',
     password: 'tyedatabase',
-    database: 'keeper',
-    port: 5432,
+    database: 'notes',
+    port: 5433,
 });
 db.connect();
 
@@ -63,5 +63,5 @@ app.put('notes/:id', async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+    console.log(`Server running on port: ${port}`);
 })

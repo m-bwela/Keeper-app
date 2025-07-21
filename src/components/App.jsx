@@ -9,8 +9,23 @@ function App() {
 
   const [notes, setNotes] = useState([]);
 
+  // Fetching notes from the backend when the component mounts
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/notes')
+  //   .then(res => res.json())
+  //   .then(data => setNotes(data))
+  //   .catch(error => console.error('Error fetching notes:' , error));
+  // }, []); 
+
   function addNote(createNote) {
-    const noteWithId = { ...createNote, id: uuidv4() }; //Adding with uuid
+    const noteWithId = { ...createNote, id: uuidv4() };
+    // fetch('http://localhost:3000/notes', {
+    //   method: 'POST',
+    //   headers: { "Content-Type": "application/json"},
+    //   body: JSON.stringify(noteWithId)
+    // }).then(() => setNotes(prevNotes => [...prevNotes, noteWithId]));
+    
+    //Adding with uuid
     setNotes((prevValue) => [
       ...prevValue,
       noteWithId
@@ -26,6 +41,9 @@ function App() {
   }
 
   function deleteNote(id) {
+    // fetch(`http://localhost:3000/notes/${id}`, { method: 'DELETE' })
+    // .then(() => setNotes(prevNotes => prevNotes.filter(note => note.id !== id)));
+
     setNotes((prevValue) => {
       return prevValue.filter((noteItem) => {
         return noteItem.id !== id; //Using id to filter out the note
@@ -38,6 +56,13 @@ function App() {
   }
 
   function editNote(id, updateNote) {
+    // fetch(`http://localhost:3000/notes/${id}`, {
+    //   method: 'PUT',
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(updateNote)
+    // }).then(() => setNotes(prevNotes => 
+    //   prevNotes.map(note => note.id === id ? { ...note, ...updateNote } : note)));
+
     setNotes((prevNotes) => {
       prevNotes.map((note) => {
         if(note.id === id) {
