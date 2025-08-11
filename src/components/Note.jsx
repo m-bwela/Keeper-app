@@ -34,11 +34,19 @@ function Note(props) {
     })
   }
 
+   function handleFocus(e) {
+      e.target.style.backgroundColor = "lightyellow";
+    }
+
+    function handleBlur(e) {
+      e.target.style.backgroundColor = "";
+    }
+
   return (
     <div className="note">
       {isEditing ? (
         <>
-          <input name="title" onChange={handleChange} placeholder="title" value={updatedNote.title} />
+          <input name="title" onChange={handleChange} placeholder="title" value={updatedNote.title} onFocus={handleFocus} onBlur={handleBlur}/>
           <textarea name="content" onChange={handleChange} placeholder="content" value={updatedNote.content} />
           <button type="button" onClick={handleSaveClick}><SaveIcon /></button>
         </>
